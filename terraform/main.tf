@@ -55,7 +55,7 @@ resource "aws_iam_role" "image_processor_lambda_role" {
 
 # lambda function
 resource "aws_lambda_function" "image_processor_lambda" {
-  filename = "zips/image_processor_lambda.zip"
+  filename = "zips/image_processor_lambda_${var.lambdaVersion}.zip"
   function_name = "image-processor-lambda"
   # assign created role
   role = aws_iam_role.image_processor_lambda_role.arn
@@ -64,4 +64,35 @@ resource "aws_lambda_function" "image_processor_lambda" {
   runtime = "nodejs18.x"
   memory_size = 1024
   timeout = 300
+}
+
+# lambda function url
+resource "aws_lambda_function_url" "image_processor_lambda_function_url" {
+  function_name = aws_lambda_function.image_processor_lambda.id
+  authorization_type = "NONE"
+}
+
+# add cloudwatch log group for lambda function
+resource "aws_cloudwatch_log_group" "image_processor_lambda_log_group" {
+  name = "/aws/lambda/${aws_lambda_function.image_processor_lambda.function_name}"
+  retention_in_days = 3
+}
+
+data "aws_iam_policy_document" "image_processor_lambda_policy" {
+  statement {
+    actions = [
+      "logs:CreateLogStream",
+      "logs:PutLogEvents"
+    ]
+    resources = [
+      aws_cloudwatch_log_group.image_processor_lambda_log_group.arn,
+      "${aws_cloudwatch_log_group.image_processor_lambda_log_group.arn}:*"
+    ]
+  }
+}
+
+resource "aws_iam_role_policy" "image_processor_lambda_role_policy" {
+  policy = data.aws_iam_policy_document.image_processor_lambda_policy.json
+  role = aws_iam_role.image_processor_lambda_role.id
+  name = "image-processor-lambda-policy"
 }

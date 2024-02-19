@@ -1,10 +1,19 @@
-# serverless image processor
+# Serverless Image Processing
 
-pipeline:
+serverless image processing pipeline using AWS s3 and lambda, infrastructure created using Terraform
 
-- create s3 buckets for terraform state and images
-- lambda function url that takes in processing parameters (resize, etc.), image file, and file name
-- triggers lambda function that processes image with parameters
-- uploads image to s3 bucket
-- returns url to processed image file in bucket
-- all setup with Terraform
+# Supported Operations (Query Parameters)
+
+- saveDirectory: directory path to save image to (Ex: food/images), defaults to root directory if not present
+- resizeX: width to resize image to
+- resizeY: height to resize image to
+
+# Pipeline
+
+- post to lambda function url endpoint with image as multi-part form data and processing parameters as query parameters
+- image will be processed and uploaded to s3 bucket
+- response will be returned with s3 url to retrieve image
+
+# Improvements Todo
+
+- implement bettter security policies for get/put access to s3 bucket

@@ -1,6 +1,7 @@
 # deploy script for compiling lambda function and updating terraform state
 
 function deploy {
+  TIMESTAMP=$(date +%Y%m%d%H%M%S)
   cd ../lambda/ && \
   npm i && \
   npm run build && \
@@ -10,11 +11,14 @@ function deploy {
   cp -r ./node_modules dist/ && \
   cd dist && \
   find . -name "*.zip" -type f -delete && \
-  zip -r ../../terraform/zips/image_processor_lambda.zip . && \
+  zip -r ../../terraform/zips/image_processor_lambda_"$TIMESTAMP".zip . && \
   cd .. && rm -rf dist && \
   cd ../terraform && \
-  terraform plan && \
-  terraform apply
+  terraform plan -var lambdaVersion="$TIMESTAMP" -out=./plan && \
+  terraform apply ./plan && \
+  # redownload dev dependencies
+  cd ../lambda/ && \
+  npm i
 }
 
 deploy
