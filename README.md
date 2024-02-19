@@ -17,3 +17,4 @@ serverless image processing pipeline using AWS s3 and lambda, infrastructure cre
 # Improvements Todo
 
 - implement bettter security policies for get/put access to s3 bucket
+- split up logic in lambda function
