@@ -14,7 +14,10 @@ serverless image processing pipeline using AWS s3 and lambda, infrastructure cre
 - image will be processed and uploaded to s3 bucket
 - response will be returned with s3 url to retrieve image
 
-# Improvements Todo
+# Usage
 
-- implement bettter security policies for get/put access to s3 bucket
-- split up logic in lambda function
+If anyone wants to use this for themselves, make sure to change the following in the terraform file:
+
+- s3 bucket names (bucket for terraform state and for uploaded images)
+- aws region
+- lambda function url CORS

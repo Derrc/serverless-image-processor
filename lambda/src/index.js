@@ -16,7 +16,7 @@ exports.handler = void 0;
 const jimp_1 = __importDefault(require("jimp"));
 const parse_multipart_data_1 = require("parse-multipart-data");
 const aws_sdk_1 = require("aws-sdk");
-// define s3 bucket and bucket name
+// define s3 client and bucket name
 const s3 = new aws_sdk_1.S3();
 const bucketName = "serverless-image-processor-images-1220";
 // entry-point for lambda function url
