@@ -16,7 +16,7 @@ serverless image processing pipeline using AWS s3 and lambda, infrastructure cre
 
 # Usage
 
-If anyone wants to use this for themselves, make sure to change the following in the terraform file:
+If anyone wants to use this for themselves, make sure to change the following in main.tf file:
 
 - s3 bucket names (bucket for terraform state and for uploaded images)
 - aws region
