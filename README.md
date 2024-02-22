@@ -21,3 +21,9 @@ If anyone wants to use this for themselves, make sure to change the following in
 - s3 bucket names (bucket for terraform state and for uploaded images)
 - aws region
 - lambda function url CORS
+
+To compile the lambda function into a zip file and create infrastructure use the deploy script:
+
+```
+cd terraform && ./deploy.sh
+```
