@@ -2,6 +2,8 @@
 
 serverless image processing pipeline using AWS s3 and lambda, infrastructure created using Terraform
 
+![Architecture diagram](diagram.png)
+
 # Supported Operations (Query Parameters)
 
 - saveDirectory: directory path to save image to (Ex: food/images), defaults to root directory if not present
