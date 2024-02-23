@@ -75,7 +75,19 @@ export const handler = async (
   let operations = "";
 
   if (queryParams?.resizeX && queryParams?.resizeY) {
-    image.resize(parseInt(queryParams.resizeX), parseInt(queryParams.resizeY));
+    const resizeX = parseInt(queryParams.resizeX);
+    const resizeY = parseInt(queryParams.resizeY);
+    // check if resize parameters are too big
+    if (resizeX > 3000 || resizeY > 3000) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify(
+          "Resize parameters are too large, try a smaller value"
+        ),
+      };
+    }
+
+    image.resize(resizeX, resizeY);
     operations += `resizeX=${queryParams.resizeX}resizeY=${queryParams.resizeY}`;
   }
 

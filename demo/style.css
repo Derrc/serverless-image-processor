@@ -1,0 +1,60 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+button {
+  border-style: none;
+}
+
+#root {
+  width: 1050px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.btn-primary {
+  color: white;
+  background-color: black;
+  padding: 8px 12px;
+  border-radius: 16px;
+}
+
+.upload-card {
+  grid-column: 4 / span 3;
+}
+
+.url-card {
+  grid-column: span 3;
+}
+
+.upload-button {
+  margin-top: 16px;
+}
+
+.image-title {
+  margin-top: 16px;
+}
+
+.image-container {
+  width: 400px;
+  height: 400px;
+}

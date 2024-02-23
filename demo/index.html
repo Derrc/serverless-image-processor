@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+    <script src="scripts.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <form
+        id="upload-form"
+        class="card upload-card"
+        onsubmit="processImage(event)"
+      >
+        <h3>Upload an image</h3>
+        <input
+          id="image"
+          name="image"
+          type="file"
+          accept="image/png, image/jpg, image/jpeg"
+        />
+        <h3>Add parameters</h3>
+        <label for="resizeX">Resize Width</label>
+        <input id="resizeX" name="resizeX" type="number" />
+        <label for="resizeY">Resize Height </label>
+        <input id="resizeY" name="resizeY" type="number" />
+        <button class="btn-primary upload-button" type="submit">
+          Process Image
+        </button>
+      </form>
+      <div class="card url-card">
+        <h3>Image</h3>
+        <p id="image-url">url:</p>
+        <p class="image-title">image:</p>
+        <div>
+          <img id="image-src" src="" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
